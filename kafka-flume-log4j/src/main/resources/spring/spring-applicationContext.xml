@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       	http://www.springframework.org/schema/beans/spring-beans.xsd
+       	http://www.springframework.org/schema/aop 
+       	http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 集中加载配置文件 -->
+    <!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+            	${sys.server.type} 正常这块是分环境的
+                <value>classpath:properties/redis/rdtest/redis-conf.properties</value>
+            </list>
+        </property>
+    </bean> -->
+
+	<import resource="flume-log-quartz.xml"/>
+
+    <!-- component scan -->
+    <context:component-scan base-package="org.flume" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+    </context:component-scan>
+    
+    <!-- 缓存，aop ，注解 ，统一管理 -->
+	<!-- aop配置，切面类 -->
+	<!-- <bean id="redisCacheAspect" class="org.flume.system.redis.handler.RedisCacheAspect">
+	</bean>
+ 
+	拦截所有指定 包和指定类型下的 下所有的方法
+	<aop:config proxy-target-class="true">
+		<aop:aspect ref="redisCacheAspect">
+			<aop:pointcut id="redisCacheAopPointcut"  
+					expression="(execution(* org.flume.business..*.*(..)) and @annotation(cacheable))"/>
+					
+			环绕 ，命中缓存则直接放回缓存数据，不会往下走，未命中直接放行，直接执行对应的方法
+			<aop:around pointcut-ref="redisCacheAopPointcut" method="cache"/>
+		</aop:aspect>
+	</aop:config> -->
+	<!-- 缓存，aop ，结束-->
+	
+</beans>

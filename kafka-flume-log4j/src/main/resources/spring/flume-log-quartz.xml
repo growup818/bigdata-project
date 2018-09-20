@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<description>flume log </description>
+	
+    <context:component-scan base-package="org.flume.business.quartz" />
+
+    <!-- For times when you need more complex processing, passing data to the scheduled job -->
+    <bean name="logWorkJobJobBean" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="org.flume.business.quartz.LogWorkScheduledJob" />
+        <property name="jobDataMap">
+            <map>
+                <entry key="logWorkJob" value-ref="logWorkJob" />
+            </map>
+        </property>
+        <property name="durability" value="true" />
+    </bean>
+
+
+    <!-- Run the job every 5 seconds only on Weekends -->
+    <bean id="logWorkJobJobBeanTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="logWorkJobJobBean" />
+         <!-- 每5秒启动一次 -->
+         <property name="cronExpression" value="*/10 * * * * ?" /> 
+         <!-- （1~7 1=SUN 或 SUN，MON，TUE，WED，THU，FRI，SAT）  -->
+      	 <!--5秒 启动一次-->
+      	 <!-- <property name="cronExpression" value="*/5 * * * * ?" /> -->
+    </bean>
+
+    <!-- Scheduler factory bean to glue together jobDetails and triggers to Configure Quartz Scheduler -->
+    <bean  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="jobDetails">
+            <list>
+                <ref bean="logWorkJobJobBean" />
+            </list>
+        </property>
+
+        <property name="triggers">
+            <list>
+                <ref bean="logWorkJobJobBeanTrigger" />
+            </list>
+        </property>
+    </bean>
+
+</beans>

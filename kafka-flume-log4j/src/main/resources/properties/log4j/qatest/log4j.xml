@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<!-- 控制台输出 -->
+	<appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+		<param name="Encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ABSOLUTE} [%5p] [%c] :%L - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="debug" />
+			<param name="levelMax" value="error" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+	<!-- 业务日志 -->
+	<!-- 需要定义sys.logger.path 环境变量 -->
+	<appender name="app" class="org.apache.log4j.DailyRollingFileAppender">
+		<!-- <param name="BufferedIO" value="true" /> <param name="BufferSize" value="32768" /> -->
+		<param name="Encoding" value="UTF-8" />
+		<param name="File" value="${sys.logger.path}/system_app.log" />
+		<param name="DatePattern" value="'.'yyyyMMdd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-d{yyyy-MM-dd HH\:mm\:ss} [%c]-[%p] %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="info" />
+			<param name="levelMax" value="info" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+	<!-- 系统日志 -->
+	<appender name="sys" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Encoding" value="UTF-8" />
+		<param name="File" value="${sys.logger.path}/system_sys.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-d{yyyy-MM-dd HH\:mm\:ss} [%c]-[%p] %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="warn" />
+			<param name="levelMax" value="error" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+	<!-- DEBUG日志 -->
+	<appender name="debug" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Encoding" value="UTF-8" />
+		<param name="File" value="${sys.logger.path}/system_debug.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-d{yyyy-MM-dd HH\:mm\:ss} [%c]-[%p] %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="debug" />
+			<param name="levelMax" value="debug" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+	<!-- 监控日志 -->
+	<appender name="monitor" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Encoding" value="UTF-8" />
+		<param name="File" value="${sys.logger.path}/system_monitor.log" />
+		<param name="DatePattern" value="'.'yyyyMMdd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-d{yyyy-MM-dd HH\:mm\:ss} [%c]-[%p] %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="info" />
+			<param name="levelMax" value="info" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+	<!-- dubbo -->
+	<logger name="com.alibaba.dubbo" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="debug" />
+	</logger>
+
+	<!-- spring -->
+	<logger name="org.springframework" additivity="false">
+		<level value="info" />
+		<appender-ref ref="debug" />
+	</logger>
+
+	<!-- zookeeper monitor -->
+	<logger name="org.apache.zookeeper.ClientCnxn" additivity="false">
+		<level value="info" />
+		<appender-ref ref="monitor" />
+	</logger>
+	
+	<root>
+		<priority value="debug" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="sys" />
+		<appender-ref ref="app" />
+		<appender-ref ref="debug" />
+	</root>
+</log4j:configuration>  
