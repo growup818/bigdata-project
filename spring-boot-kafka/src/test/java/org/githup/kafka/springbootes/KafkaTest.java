@@ -1,4 +1,4 @@
-package org.githup.es.springbootes;
+package org.githup.kafka.springbootes;
 
 import java.util.concurrent.ExecutionException;
 
@@ -20,9 +20,9 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootKafkaApplication.class)
-public class SpringBootEsApplicationTests {
+public class KafkaTest {
 	
-	private static final Logger logger = LoggerFactory.getLogger(SpringBootEsApplicationTests.class);
+	private static final Logger logger = LoggerFactory.getLogger(KafkaTest.class);
 
 	@Autowired
 	private KafkaSender kafkaSender;

@@ -16,7 +16,7 @@ import org.w3c.dom.css.Counter;
 
 public class Producer extends Thread {
 
-	private final KafkaProducer<Integer, String> prod;
+	/*private final KafkaProducer<Integer, String> prod;
 
 	private final String topic;
 
@@ -61,14 +61,14 @@ public class Producer extends Thread {
 		}
 	}
 	
-	/***
+	*//***
 	 * 分区设置
 	 * @param topic
 	 * @param key
 	 * @param value
 	 * @param cluster
 	 * @return
-	 */
+	 *//*
 	public int partition(String topic, byte[] key ,byte[] value, Cluster cluster) {
 		List<PartitionInfo> piList = cluster.partitionsForTopic(topic);
 		int numPartition = piList.size();
@@ -89,6 +89,6 @@ public class Producer extends Thread {
 	
 	public static void main(String[] args) {
 		new Producer("test", true).start();
-	}
+	}*/
 
 }
