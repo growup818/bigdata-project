@@ -45,7 +45,7 @@ public class KafkaConfig {
 	@Value("${spring.kafka.producer.lingerMs}")
 	private String producerLingerMs;
 
-	@Value("${spring.kafka.producer.bufferMemory}")
+	@Value("${spring.kafka.producer.buffer-memory}")
 	private String producerBufferMemory;
 
 	@Value("${spring.kafka.consumer.bootstrapServers}")
