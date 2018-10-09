@@ -3,6 +3,7 @@ package org.githup.kafka.springbootes;
 import java.util.concurrent.ExecutionException;
 
 import org.githup.kafka.SpringBootKafkaApplication;
+import org.githup.kafka.consumer.KafkaConsumer;
 import org.githup.kafka.sender.KafkaSender;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,9 +28,12 @@ public class KafkaTest {
 	@Autowired
 	private KafkaSender kafkaSender;
 	
+	@Autowired
+	private KafkaConsumer kafkaConsumer;
+	
 	@Test
 	public void test1() throws InterruptedException, ExecutionException {
-		kafkaSender.send();
+		kafkaSender.sendSync();
 	}
 	
 }
