@@ -37,23 +37,8 @@
 		<itextpdf.version>5.2.0</itextpdf.version>
 		<jedis.redis.clients.version>2.8.1</jedis.redis.clients.version>
 		<spring.redis.version>1.7.2.RELEASE</spring.redis.version>
-        <biz.paluch.redis.lettuce.version>3.5.0.Final</biz.paluch.redis.lettuce.version>
         <http.client.version>4.5.2</http.client.version>
 	</properties>
-
-	<!-- nexus部署地址 -->
-	<distributionManagement>
-		<repository>
-			<id>nexus-release</id>
-			<name>nexus release repository</name>
-			<url>${nexus.url.releases}</url>
-		</repository>
-		<snapshotRepository>
-			<id>nexus-snapshots</id>
-			<name>nexus snapshots repository</name>
-			<url>${nexus.url.snapshots}</url>
-		</snapshotRepository>
-	</distributionManagement>
 
 	<!-- 依赖管理 -->
 	<dependencies>
