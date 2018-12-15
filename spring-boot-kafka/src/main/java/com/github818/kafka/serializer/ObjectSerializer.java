@@ -1,4 +1,4 @@
-package org.githup.kafka.serializer;
+package com.github818.kafka.serializer;
 
 import java.util.Map;
 

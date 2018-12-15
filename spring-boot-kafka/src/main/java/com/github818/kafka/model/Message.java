@@ -1,4 +1,4 @@
-package org.githup.kafka.model;
+package com.github818.kafka.model;
 
 import java.util.Date;
 

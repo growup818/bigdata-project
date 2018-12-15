@@ -1,4 +1,4 @@
-package org.githup.kafka.constants;
+package com.github818.kafka.constants;
 
 import java.io.Serializable;
 

@@ -1,7 +1,7 @@
-package org.githup.kafka.controller;
+package com.github818.kafka.controller;
 
-import org.githup.kafka.constants.KafkaWebStatusEnum;
-import org.githup.kafka.constants.ResponseVo;
+import com.github818.kafka.constants.KafkaWebStatusEnum;
+import com.github818.kafka.constants.ResponseVo;
 
 /**
  * 基础数据建设

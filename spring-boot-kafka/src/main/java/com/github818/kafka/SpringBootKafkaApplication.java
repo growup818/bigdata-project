@@ -1,4 +1,4 @@
-package org.githup.kafka;
+package com.github818.kafka;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
  *
  */
 @SpringBootApplication
-@ComponentScan(basePackages = { "org.githup" })
+//@ComponentScan(basePackages = {"com.github818"})
 public class SpringBootKafkaApplication {
 
 	public static void main(String[] args) {
